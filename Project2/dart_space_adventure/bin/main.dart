@@ -1,32 +1,40 @@
+import 'dart:io';
+import 'dart:convert';  //for JSON data handling
 import 'package:dart_space_adventure/dart_space_adventure.dart';
 
-const systemName = 'Solar System';
-const planetData = {
-  'Mercury':'A very hot planet, closest to the sun',
-  'Venus':'It\'s very cloudy here!',
-  'Earth':'There is something very familiar about this planet.',
-  'Mars':'Known as the red planet.',
-  'Jupiter':'A gas giant, with a noticeable red spot.',
-  'Saturn':'This planet has beautiful rings around it.',
-  'Uranus':'Strangely, this planet rotates around on its side.',
-  'Neptune':'A very cold planet, furthest from the sun.',
-  'Pluto':'I don\'t care what they say - it\'s a planet.'
-};
+//we will need the 'async' command to load the json file
+void main(List<String> arguments) async {
+  var filePath;
+  //read command line argument
+  for(String args in arguments){
+    filePath = args;
+  }
+  
+  //read file path and decode json data to get the name of the solar system
+  var newSystemName = jsonDecode(await (File(filePath)).readAsString())['name'];
 
-void main(List<String> arguments) {
+  //method to help parse json data
+  Planet fromJson(Map<String, dynamic> parsedJson) {
+    return Planet(
+      name: parsedJson["name"], 
+      description: parsedJson["description"]);
+  }
+  //read file path to json file, decode json data, conver to List
+  var newPlanets = jsonDecode(await (File(filePath)).readAsString())['planets'] as List;;
+  //create new Planet List by deserializing the decoded json data 
+  List<Planet> mockPlanets = newPlanets.map((entry) => fromJson(entry)).toList();
+  //code above was created with help from https://medium.com/flutter-community/parsing-complex-json-in-flutter-747c46655f51
+  
+  //start Space Adventure!
   SpaceAdventure(
     planetarySystem:
       PlanetarySystem(
-        name: systemName, 
-        planets: mockPlanets()
+        name: newSystemName, 
+        planets: mockPlanets
       )
   ).start();
 }
 
-List<Planet> mockPlanets() {
-  return planetData.entries.map(
-    (entry) => Planet(name: entry.key, description: entry.value)
-  ).toList();
-}
+
 
 
