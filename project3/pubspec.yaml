@@ -63,6 +63,15 @@ flutter:
     - family: 'Bangers'
       fonts:
       - asset: assets/fonts/Bangers-Regular.ttf
+    - family: 'Oswald'
+      fonts:
+        - asset: assets/fonts/Oswald-Regular.ttf
+    - family: 'Staatliches'
+      fonts:
+        - asset: assets/fonts/Staatliches-Regular.ttf
+    - family: 'Lobster'
+      fonts:
+        - asset: assets/fonts/Lobster-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

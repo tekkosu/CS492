@@ -17,77 +17,54 @@ class _MyCardState extends State<MyCard> {
       children: [
         Padding(
           padding: EdgeInsets.all(25),
-          child: Image.asset('assets/images/profile.png'),
+          child: Image.asset('assets/images/aFauci.png', height: 250, width: 250),
         ),
-        Text('Kevin Tek'),
-        Text('Software Developer'),
+        Text('Anthony Fauci', style: TextStyle(fontFamily: 'Oswald', fontWeight: FontWeight.bold, fontSize: 25)),
+        Text('MD Extraordinaire', style: TextStyle(fontFamily: 'Oswald', fontSize: 18),),
         Padding(
           padding: EdgeInsets.all(20),
           child: GestureDetector(
             onTap: () => launch("sms:5555555555"),
-            child: Text('555-555-5555')
+            child: Text('555-555-5555', style: TextStyle(fontWeight: FontWeight.bold))
           )
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 55.0),
+              padding: EdgeInsets.symmetric(horizontal: padding(context)),
               child: GestureDetector(
-                onTap: () => launch('http://github.com'),
-                child: Text('http://github.com')
+                onTap: () => launch('https://coronavirus.jhu.edu/us-map'),
+                child: Text('https://coronavirus.jhu.edu/', style: TextStyle(fontFamily: 'Oswald', fontSize: 15))
               )
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0),
-              child: Text('tekk@oregonstate.edu')
+              padding: EdgeInsets.symmetric(horizontal: padding(context)),
+              child: Text('afauci@covid.edu', style: TextStyle(fontFamily: 'Oswald', fontSize: 15))
             )
           ],
-        )
+        ),
+        paddedStringNormal(''),
+        paddedStringNormal(''),
+        paddedStringNormal(''),
       ],
     );
   }
+
+  Widget paddedStringNormal(var someString) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 20),
+      child: Text(someString)
+    );
+  }
+
+  double padding(BuildContext context) {
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      return 100;
+    }
+    else {
+      return 20;
+    }
+  }
+
 }
-
-// class Flower extends StatelessWidget {
-
-//   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         Text('##', style: Theme.of(context).textTheme.display4),
-//         Padding(
-//           padding: EdgeInsets.all(20),
-//           child: GestureDetector(
-//             onTap: () { },
-//             child: Image.asset('assets/rh.png'),
-//           ),
-//         )
-//       ],
-//     );
-//   }
-
-//   // Widget build(BuildContext context) {
-//   //   return FractionallySizedBox(
-//   //     widthFactor: 0.9,
-//   //     heightFactor: 0.9,
-//   //     child: FittedBox(
-//   //       alignment: Alignment.bottomRight,
-//   //       fit: BoxFit.scaleDown,
-//   //       child: GestureDetector(
-//   //         onTap: () { displaySnackBar(context);},
-//   //         child: Image.asset('assets/rh.png')
-//   //       ),
-//   //     ),
-//   //   );
-//   // }
-
-//   // void displaySnackBar(BuildContext context) {
-//   //   final snackBar = SnackBar(content: Text('Pretty Cool!!'));
-//   //   Scaffold.of(context).showSnackBar(snackBar);
-//   // }
-
-//   // double padding(BuildContext context) {
-//   //   return MediaQuery.of(context).size.width * 0.1;
-//   // }
-
-// }

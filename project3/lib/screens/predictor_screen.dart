@@ -7,7 +7,7 @@ class PredictorScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Fortune Teller')
+        title: Text('Fortune Teller', style: TextStyle(fontFamily: 'Lobster', fontSize: 20))
       ),
       body: Center(child:MyFortune())
     );

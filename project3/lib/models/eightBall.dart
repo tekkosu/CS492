@@ -9,10 +9,14 @@ class EightBall {
     'Sorry...  The eightball is broken.',
     'Better Luck Tomorrow.',
     'You are hired!',
-    'When can you start?!?'
+    'When can you start?!?',
+    'You are not ready.',
+    'You got the job!',
+    'Why did you apply?',
+    'Try again next year.'
   ];
 
-  int numOfStrings = 4;
+  int numOfStrings = 8;
 
   String get fortune => _currentString;
 

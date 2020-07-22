@@ -1,7 +1,6 @@
 import '../models/eightBall.dart';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 
 class MyFortune extends StatefulWidget {
   @override
@@ -22,7 +21,7 @@ class _MyFortuneState extends State<MyFortune> {
             'Call Me... Maybe?', 
             textAlign: TextAlign.center, 
             style: TextStyle(
-              fontFamily: 'Ranchers', 
+              fontFamily: 'Bangers', 
               fontSize: 30
               )
             ),
@@ -33,44 +32,32 @@ class _MyFortuneState extends State<MyFortune> {
             onTap: () { setState(() { eightball.shake(); }); },
             child: Text(
               'Ask a question... TAP for the answer.', 
-              style: TextStyle(fontSize: 20)
+              style: TextStyle(
+                fontFamily: 'Staatliches',
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
+                foreground: Paint()
+                  ..shader = ui.Gradient.linear(
+                    const Offset(0, 100),
+                    const Offset(300, 100),
+                    <Color>[
+                      Colors.blue,
+                      Colors.orange,
+                    ],
+                )
               )
+            )
           )
         ),
         Text(
           '${eightball.fortune}', 
           style: TextStyle(
             fontFamily: 'Bangers',
-            fontSize: 25
+            fontSize: 25,
+            color: Colors.purple[500]
           )
         )
       ],
     );
   }
 }
-
-//   // Widget build(BuildContext context) {
-//   //   return FractionallySizedBox(
-//   //     widthFactor: 0.9,
-//   //     heightFactor: 0.9,
-//   //     child: FittedBox(
-//   //       alignment: Alignment.bottomRight,
-//   //       fit: BoxFit.scaleDown,
-//   //       child: GestureDetector(
-//   //         onTap: () { displaySnackBar(context);},
-//   //         child: Image.asset('assets/rh.png')
-//   //       ),
-//   //     ),
-//   //   );
-//   // }
-
-//   // void displaySnackBar(BuildContext context) {
-//   //   final snackBar = SnackBar(content: Text('Pretty Cool!!'));
-//   //   Scaffold.of(context).showSnackBar(snackBar);
-//   // }
-
-//   // double padding(BuildContext context) {
-//   //   return MediaQuery.of(context).size.width * 0.1;
-//   // }
-
-// }
