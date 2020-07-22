@@ -18,6 +18,7 @@ class App extends StatelessWidget {
 
 class MainTabController extends StatelessWidget{
 
+  //custom tab images
   static const tabs = [
     Image(image:AssetImage('assets/images/profile_tab.png'), height: 55, width: 55),
     Image(image:AssetImage('assets/images/resume_tab.png'), height: 45, width: 45),

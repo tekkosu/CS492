@@ -11,7 +11,11 @@ class ResumeScreen extends StatelessWidget {
         title: Text('Resume', style: TextStyle(fontFamily: 'Lobster', fontSize: 20))
       ),
       body: SingleChildScrollView(
-        child: ResumeDetail(),
+        child: Container(
+          //plain grey-ish background
+           color: Colors.black54,
+           child: ResumeDetail(),
+        )
       )
     );
   }

@@ -1,5 +1,5 @@
 import '../models/eightBall.dart';
-import 'dart:ui' as ui;
+import 'dart:ui' as ui; //used for gradient text
 import 'package:flutter/material.dart';
 
 class MyFortune extends StatefulWidget {
@@ -21,7 +21,7 @@ class _MyFortuneState extends State<MyFortune> {
             'Call Me... Maybe?', 
             textAlign: TextAlign.center, 
             style: TextStyle(
-              fontFamily: 'Bangers', 
+              fontFamily: 'Staatliches', 
               fontSize: 30
               )
             ),
@@ -29,17 +29,19 @@ class _MyFortuneState extends State<MyFortune> {
         Padding(
           padding: EdgeInsets.all(30),
           child: GestureDetector(
+            //call eightBall
             onTap: () { setState(() { eightball.shake(); }); },
             child: Text(
               'Ask a question... TAP for the answer.', 
               style: TextStyle(
-                fontFamily: 'Staatliches',
+                fontFamily: 'Lobster',
                 fontSize: 20,
                 fontStyle: FontStyle.italic,
+                //gradient text
                 foreground: Paint()
                   ..shader = ui.Gradient.linear(
                     const Offset(0, 100),
-                    const Offset(300, 100),
+                    const Offset(510, 100),
                     <Color>[
                       Colors.blue,
                       Colors.orange,
@@ -52,7 +54,7 @@ class _MyFortuneState extends State<MyFortune> {
         Text(
           '${eightball.fortune}', 
           style: TextStyle(
-            fontFamily: 'Bangers',
+            fontFamily: 'Staatliches',
             fontSize: 25,
             color: Colors.purple[500]
           )

@@ -51,6 +51,7 @@ class _MyCardState extends State<MyCard> {
     );
   }
 
+  //used for lines
   Widget paddedStringNormal(var someString) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20),
@@ -58,6 +59,7 @@ class _MyCardState extends State<MyCard> {
     );
   }
 
+  //utilizes MediaQuery to identify phone orientation and determine padding
   double padding(BuildContext context) {
     if (MediaQuery.of(context).orientation == Orientation.landscape) {
       return 100;

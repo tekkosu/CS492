@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 
 class ResumeDetail extends StatelessWidget {
 
-  //const ResumeDetail({Key key, this.title}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         paddedStringNormal(' '),
-        Text('Anthony Fauci', style: TextStyle(fontFamily: 'Oswald', fontWeight: FontWeight.bold, fontSize: 25)),
-        Text('afauci@covid.edu', style: TextStyle(fontFamily: 'Oswald', fontSize: 18)),
-        Text('https://coronavirus.jhu.edu/', style: TextStyle(fontFamily: 'Oswald', fontSize: 15)),
+        Text('Anthony Fauci', style: TextStyle(fontFamily: 'Oswald', fontWeight: FontWeight.bold, fontSize: 25, color: Colors.white)),
+        Text('afauci@covid.edu', style: TextStyle(fontFamily: 'Oswald', fontSize: 18, color: Colors.white)),
+        Text('https://coronavirus.jhu.edu/', style: TextStyle(fontFamily: 'Oswald', fontSize: 15, color: Colors.white)),
         paddedStringNormal(' '),
 
         //next job
@@ -86,30 +84,34 @@ class ResumeDetail extends StatelessWidget {
     );
   }
 
+  //normal text
   Widget paddedStringNormal(var someString) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Text(someString, style: TextStyle(fontFamily: 'Oswald'))
+      child: Text(someString, style: TextStyle(fontFamily: 'Oswald', color: Colors.white))
     );
   }
 
+  //Italicized row
   Widget paddedStringRow(var someString) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Text(someString, style: TextStyle(fontFamily: 'Oswald', fontStyle: FontStyle.italic))
+      child: Text(someString, style: TextStyle(fontFamily: 'Oswald', fontStyle: FontStyle.italic, color: Colors.white))
     );
   }
 
+  //row where strings are evenly spaced
   Widget placeHolderRow(var stringOne, var stringTwo, var stringThree) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [paddedStringRow(stringOne), paddedStringRow(stringTwo), paddedStringRow(stringThree)]);
   }
 
+  //bold text
   Widget paddedStringBold(var someString) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Text(someString, style: TextStyle(fontFamily: 'Staatliches', fontWeight: FontWeight.bold, fontSize: 15))
+      child: Text(someString, style: TextStyle(fontFamily: 'Oswald', fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white))
     );
   }
 

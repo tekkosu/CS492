@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math'; //random function
 
 class EightBall {
   final Random random = Random();
@@ -18,6 +18,7 @@ class EightBall {
 
   int numOfStrings = 8;
 
+  //get random string
   String get fortune => _currentString;
 
   void shake() {

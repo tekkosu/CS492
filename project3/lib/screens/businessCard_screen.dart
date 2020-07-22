@@ -12,6 +12,7 @@ class BusinessCardScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView (
         child: Container(
+          //gradient background
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
