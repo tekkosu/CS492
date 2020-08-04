@@ -55,7 +55,7 @@ class LogDetail extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         RaisedButton(
-          onPressed: () { },
+          onPressed: () => Navigator.of(context).pop(),  //go back
           child: paddedStringRow(stringOne), 
         ),
         RaisedButton(

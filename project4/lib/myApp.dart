@@ -16,10 +16,6 @@ class MyApp extends StatelessWidget {
 
 class MainHome extends StatelessWidget {
 
-  static final routes = {
-    Log.routeName: (context) => Log()
-  };
-
   @override 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,7 +46,6 @@ class MainHome extends StatelessWidget {
           onPressed: () => pushNewLog(context),
           ),
         ),
-        routes: routes,
     );
   }
 
