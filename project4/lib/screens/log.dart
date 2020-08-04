@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/logDetail.dart';
 
 class Log extends StatelessWidget {
 
@@ -11,11 +12,10 @@ class Log extends StatelessWidget {
         centerTitle: true,
         title: Text('New Entry'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('hello')
-        ],
+      body: SingleChildScrollView (
+        child: Container(
+          child: LogDetail(),
+        ),
       ),
       endDrawer: Drawer(
         child: ListView(
