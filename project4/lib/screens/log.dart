@@ -17,16 +17,6 @@ class Log extends StatelessWidget {
           child: LogDetail(),
         ),
       ),
-      endDrawer: Drawer(
-        child: ListView(
-            children: <Widget>[
-              DrawerHeader(child: Text('Settings')),
-              ListTile(
-                title: Text ('Dark Mode'),
-              )
-            ],
-          )
-      ),
     );
   }
 

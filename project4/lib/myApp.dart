@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/log.dart';
+import 'screens/journalEntries.dart';
 
 class MyApp extends StatelessWidget {
 
@@ -7,44 +8,78 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Project 4',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      //theme: ThemeData(primarySwatch: Colors.grey),
       home: MainHome()
     );
   }
-
 }
 
-class MainHome extends StatelessWidget {
+class MainHome extends StatefulWidget {
+
+  @override
+  _MainHomeState createState() => _MainHomeState();
+}
+
+class _MainHomeState extends State<MainHome> {
+  bool lights = false;
+
+  dynamic themeColors() {
+    if (lights) {
+      return Colors.black;
+    } else {
+      return Colors.blue;
+    }
+  }
 
   @override 
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: lights ? Colors.black : Colors.blue,
+        accentColor: lights ? Colors.black : Colors.blue,
+        //textTheme: TextTheme(bodyText2: TextStyle(color: lights ? Colors.black : Colors.blue))
+
+      ),
       home: Scaffold(
+        backgroundColor: lights ? Colors.grey[850] : Colors.white,
         appBar: AppBar(
+          //backgroundColor: themeColors(),
           centerTitle:true, 
           title: Text('Welcome'),
-          // actions: <Widget>[
-          //   IconButton(
-          //     icon: Icon(Icons.settings,color:Colors.white),
-          //     onPressed: () =>
-          //       Scaffold.of(context).openEndDrawer(),
-          //   )],
-          ),
-        body: LayoutBuilder(builder: layoutDecider),
+        ),
+        body: SafeArea(
+          child: Container(
+            //color: lights ? Colors.grey[850] : Colors.white,
+            child: LayoutBuilder(builder: layoutDecider),
+          )
+        ),
+        
         endDrawer: Drawer(
           child: ListView(
-            children: <Widget>[
-              DrawerHeader(child: Text('Settings')),
+            children: [
               ListTile(
-                title: Text ('Dark Mode'),
-              )
+                title: Text ('Settings', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              ),
+              SwitchListTile(
+                title: const Text('Dark Mode'),
+                value: lights,
+                onChanged: (bool value) {
+                  setState(() {
+                    lights = value;
+                  });
+                },
+                secondary: const Icon(Icons.brightness_medium),
+              ),
             ],
           )
         ),
         floatingActionButton: FloatingActionButton(
+          //backgroundColor: themeColors(),
           child:  Icon(Icons.add),
           onPressed: () => pushNewLog(context),
           ),
+        
+
         ),
     );
   }
@@ -52,26 +87,112 @@ class MainHome extends StatelessWidget {
   Widget layoutDecider(BuildContext context, BoxConstraints constraints) =>
     constraints.maxWidth < 500 ? VerticalLayout() : HorizonalLayout();
 
+  // Widget verticalLayoutFunc(BuildContext context) {
+  //   return Container(
+  //     //color: lights ? Colors.black : Colors.white,
+  //     child: Column(
+  //     children: [
+  //       ListTile(
+  //         //leading: Icon(Icons.chevron_right),
+  //         title: Text("Great Bagelsss"),
+  //         subtitle: Text("August 4, 2020"),
+  //         onTap: () => pushEntries(context),
+  //         )
+  //       ],
+  //     )
+  //   ); 
+  // }
+
+  // Widget horizontalLayoutFunc(BuildContext context) {
+  //   return Container(
+  //     //color: lights ? Colors.black : Colors.white,
+  //     child:
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //         children: [
+  //           Expanded(
+  //             child: ListTile(
+  //               //leading: Icon(Icons.chevron_right),
+  //               title: Text("Great Bagel"),
+  //               subtitle: Text("August 4, 2020"),
+  //             )
+  //           ),
+  //           Expanded(
+  //             child: ListTile(
+  //               //leading: Icon(Icons.chevron_right),
+  //               title: Text("Great Bagel", style: TextStyle(fontSize: 20),),
+  //               subtitle: Text("This is the best bagel in the world!  It's unbelievable, I can't believe it!!!"),
+  //               isThreeLine: true,
+  //             )
+  //           ),
+  //         ],
+  //       )
+  //   );
+  // }
+
+  void pushEntries(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => JournalEntries()));
+  }
+
   void pushNewLog(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Log()));
   }
 }
 
-class VerticalLayout extends StatelessWidget {
+class VerticalLayout extends StatefulWidget {
+  @override
+  _VerticalLayoutState createState() => _VerticalLayoutState();
+}
+
+class _VerticalLayoutState extends State<VerticalLayout> {
   @override 
   Widget build(BuildContext context) {
-    return Container(color: Colors.lightGreen);
+    return Container(
+      //color: Colors.white,
+      child: Column(
+      children: [
+        ListTile(
+          //leading: Icon(Icons.chevron_right),
+          title: Text("Great Bagel"),
+          subtitle: Text("August 4, 2020"),
+          onTap: () => pushEntries(context),
+          )
+        ],
+      )
+    ); 
+  }
+
+  void pushEntries(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => JournalEntries()));
   }
 }
 
-class HorizonalLayout extends StatelessWidget {
+class HorizonalLayout extends StatefulWidget {
+  @override
+  _HorizonalLayoutState createState() => _HorizonalLayoutState();
+}
+
+class _HorizonalLayoutState extends State<HorizonalLayout> {
   @override 
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Expanded(child: Container(color:Colors.lightGreen)),
-        Expanded(child: Container(color:Colors.deepOrange)),
+        Expanded(
+          child: ListTile(
+            //leading: Icon(Icons.chevron_right),
+            title: Text("Great Bagel"),
+            subtitle: Text("August 4, 2020"),
+          )
+        ),
+        Expanded(
+          child: ListTile(
+            //leading: Icon(Icons.chevron_right),
+            title: Text("Great Bagel", style: TextStyle(fontSize: 20),),
+            subtitle: Text("This is the best bagel in the world!  It's unbelievable, I can't believe it!!!"),
+            isThreeLine: true,
+          )
+        ),
       ],
     );
   }
