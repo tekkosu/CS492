@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/logDetail.dart';
+import '../models/logDetail.dart';
 
 class Log extends StatelessWidget {
 

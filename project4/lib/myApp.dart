@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/log.dart';
-import 'screens/journalEntries.dart';
-import 'components/logDetail.dart';
+import 'models/journalEntries.dart';
 
 class MyApp extends StatelessWidget {
 
