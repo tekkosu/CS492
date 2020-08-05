@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import '../myApp.dart';
 
-class JournalEntries extends StatefulWidget {
+class JournalEntries extends StatelessWidget {
 
-  static const routeName = 'log';
-
-  @override
-  _JournalEntriesState createState() => _JournalEntriesState();
-}
-
-class _JournalEntriesState extends State<JournalEntries> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LogDetail extends StatelessWidget {
+
+  final bool lights;
+  const LogDetail({Key key, this.lights}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,7 +18,11 @@ class LogDetail extends StatelessWidget {
                 child:TextField(
                   autofocus: true,
                   decoration: InputDecoration(
-                    labelText: 'Title', border: OutlineInputBorder()),
+                    labelText: 'Title', 
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: lights ? Colors.white : Colors.grey,)
+                    )
+                  ),
                 )
               ),
             ]
@@ -26,7 +34,11 @@ class LogDetail extends StatelessWidget {
                 child:TextField(
                   autofocus: true,
                   decoration: InputDecoration(
-                    labelText: 'Body', border: OutlineInputBorder()),
+                    labelText: 'Body', 
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: lights ? Colors.white : Colors.grey,)
+                    )
+                  ),
                 )
               ),
             ]
@@ -38,7 +50,11 @@ class LogDetail extends StatelessWidget {
                 child:TextField(
                   autofocus: true,
                   decoration: InputDecoration(
-                    labelText: 'Rating', border: OutlineInputBorder()),
+                    labelText: 'Rating', 
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: lights ? Colors.white : Colors.grey,)
+                    )
+                  ),
                 )
               ),
             ]
