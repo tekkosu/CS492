@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "231488972448",
+    "firebase_url": "https://project5-9902a.firebaseio.com",
+    "project_id": "project5-9902a",
+    "storage_bucket": "project5-9902a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231488972448:android:f149b7bef2ce83d7ab8bc5",
+        "android_client_info": {
+          "package_name": "com.tek.project5_wasteagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231488972448-jemu47p6uu8c5h5t334hnt24uuph2hhl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArG6xOC15AG-MEcxrapC1GUM3mzFq7yUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231488972448-jemu47p6uu8c5h5t334hnt24uuph2hhl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
