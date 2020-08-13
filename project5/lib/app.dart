@@ -1,0 +1,18 @@
+import 'package:flutter/material.dart';
+import 'screens/homepage.dart';
+
+class App extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Project 5',
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+      ),
+      home: Scaffold(
+        body: const MyHomePage(title: 'Wasteagram - #'),
+        ),
+      );
+  }
+}
