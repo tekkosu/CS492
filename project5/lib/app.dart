@@ -8,10 +8,14 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Project 5',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: const MyHomePage(title: 'Wasteagram - #'),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Wasteagram - ###'),
+        ),
+        body: MyHomePage(),
         ),
       );
   }

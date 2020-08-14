@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import '../components/camera_screen.dart';
 
-class AddNewScreen extends StatelessWidget{
+class AddNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('test')
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Wasteagram')
+        ),
+      body: CameraScreen(),
     );
   }
 }
