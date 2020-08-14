@@ -28,24 +28,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ListView.builder(
                   itemCount: snapshot.data.documents.length,
                   itemBuilder: (context,index) {
-                    // Post post = Post(snapshot.data.documents[index]);
-                    var post = snapshot.data.documents[index];
+                    Post post = Post(snapshot.data.documents[index]);
+                    //var post = snapshot.data.documents[index];
                     return ListTile(
                       onTap: () {
                         pushSeeTile(context,post);
                       },
-                      title: Text(formatDate(post['submission_date'].toDate())),
-                      trailing: Text(post['weight'].toString()),
-                      // title: Text(formatDate(post.date)),
-                      // trailing: Text(post.weight.toString()),
+                      // title: Text(formatDate(post['submission_date'].toDate())),
+                      // trailing: Text(post['weight'].toString()),
+                      title: Text(formatDate(post.date)),
+                      trailing: Text(post.weight.toString()),
                     );
                   }
                 ),
               ),
-              FloatingActionButton(
-                onPressed: () => pushAddNew(context),
-                child: Icon(Icons.camera_enhance),
+              Padding (
+                padding: EdgeInsets.all(10),
+                child: FloatingActionButton(
+                  onPressed: () => pushAddNew(context),
+                  child: Icon(Icons.camera_enhance),
+                ),
               )
+              
             ],
           );
       } else {
@@ -56,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static String formatDate(date) {
-    var dateParsed = DateTime.parse(date.toString());
+    var dateParsed = DateTime.parse(date.toDate().toString());
     final DateFormat dateFormat = DateFormat("EEEE, MMMM d, y");
 
     return dateFormat.format(dateParsed).toString();
@@ -66,8 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddNew()));
   }
 
-  void pushSeeTile(BuildContext context, post) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SeeTile()));
+  void pushSeeTile(BuildContext context, Post post) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SeeTile(post: post)));
   }
 
 }

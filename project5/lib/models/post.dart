@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Post {
-  String date;
-  String url;
-  String location;
-  int weight;
+  var date;
+  var url;
+  var location;
+  var weight;
 
   Post(DocumentSnapshot document) {
     this.date = document['submission_date'];

@@ -8,7 +8,7 @@ class AddNew extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Wasteagram')
+        title: Text('Wasteagram - New Photo')
         ),
       body: CameraScreen(),
     );
