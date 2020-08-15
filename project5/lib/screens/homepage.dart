@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
-import 'package:project5/models/post.dart';
+import 'package:project5/models/cloudPost.dart';
 import 'addNew.dart';
 import 'seeTile.dart';
 
@@ -15,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int totalWeight = 0;
+  var totalWeight = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +36,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: ListView.builder(
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context,index) {
-                        Post post = Post(snapshot.data.documents[index]);
-                        totalWeight += post.weight; 
+                        CloudPost cloudPos = CloudPost(snapshot.data.documents[index]);
+                        totalWeight += cloudPos.weight; 
                         //var post = snapshot.data.documents[index];
-                        return ListTile(
-                          onTap: () {
-                            pushSeeTile(context,post);
-                          },
-                          // title: Text(formatDate(post['submission_date'].toDate())),
-                          // trailing: Text(post['weight'].toString()),
-                          title: Text(formatDate(post.date), style: TextStyle(fontSize: 20)),
-                          trailing: Text(post.weight.toString(), style: TextStyle(fontSize: 25)),
-                          
+                        return Semantics(
+                          child: ListTile(
+                            onTap: () {
+                              pushSeeTile(context,cloudPos);
+                            },
+                            // title: Text(formatDate(post['submission_date'].toDate())),
+                            // trailing: Text(post['weight'].toString()),
+                            title: Text(formatDate(cloudPos.date), style: TextStyle(fontSize: 20)),
+                            trailing: Text(cloudPos.weight.toString(), style: TextStyle(fontSize: 25)),
+                          ),
+                          label: 'Details for $formatDate(post.date)',
+                          button: true,
+                          enabled: true,
+                          onTapHint: 'View Post Details',
                         );
                       }
                     ),
@@ -68,10 +73,17 @@ class _MyHomePageState extends State<MyHomePage> {
         )
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => pushAddNew(context),
-        child: Icon(Icons.camera_enhance),
-      ),
+      floatingActionButton: Semantics(
+        child: FloatingActionButton(
+          onPressed: () => pushAddNew(context),
+          child: Icon(Icons.camera_enhance),
+        ),
+        label: 'Add New Photos/Journal Entry',
+        button: true,
+        enabled: true,
+        onTapHint: 'Select an Image',
+      )
+        
     );
   }
 
@@ -86,8 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddNew()));
   }
 
-  void pushSeeTile(BuildContext context, Post post) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SeeTile(post: post)));
+  void pushSeeTile(BuildContext context, CloudPost cloudPos) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SeeTile(cloudPos: cloudPos)));
   }
 
 }

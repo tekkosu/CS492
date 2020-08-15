@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
 class NewModel {
-  String date;
-  String url;
-  String latitude;
-  String longitude;
-  int quantity;
+  var date;
+  var url;
+  var latitude;
+  var longitude;
+  var quantity;
 
   NewModel( {
     this.date,

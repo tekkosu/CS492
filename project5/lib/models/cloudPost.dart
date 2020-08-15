@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Post {
+class CloudPost {
   var date;
   var url;
   var longitude;
   var latitude;
   var weight;
 
-  Post(DocumentSnapshot document) {
+  CloudPost(DocumentSnapshot document) {
     this.date = document['submission_date'];
     this.url = document['url'];
     this.longitude = document['longitude'];

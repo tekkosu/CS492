@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
-import 'dart:convert';
 import '../models/newPost_model.dart';
 
 class CameraScreen extends StatefulWidget {
@@ -14,15 +13,14 @@ class CameraScreen extends StatefulWidget {
   _CameraScreenState createState() => _CameraScreenState();
 }
 
-class PostEntryFields {
-  String photoURL;
-  String quantity;
-}
+// class PostEntryFields {
+//   String photoURL;
+//   String quantity;
+// }
 
 class _CameraScreenState extends State<CameraScreen> {
 
   NewModel newModel;
-  final postEntryFields = PostEntryFields();
   
   var weight;
   File image;
@@ -32,6 +30,12 @@ class _CameraScreenState extends State<CameraScreen> {
     setState(() { });
     //don't forget to add logic for handling errors or other stuff
   }
+
+  // Future getImageCamera() async{
+  //   image = await ImagePicker.pickImage(source: ImageSource.camera;
+  //   setState(() { });
+  //   //don't forget to add logic for handling errors or other stuff
+  // }
 
   LocationData locationData;
   var locationService = Location();
@@ -76,12 +80,19 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     if (image == null) {
       return Center(
-        child: FloatingActionButton(
-            child: Icon(Icons.add_a_photo),
-            onPressed: () {
-              getImage();
-            }
-          ) 
+        child: 
+          Semantics(
+            child: FloatingActionButton(
+              child: Icon(Icons.add_a_photo),
+              onPressed: () { 
+                getImage();
+              }
+            ),
+            label: 'Get Image from Gallery Button',
+            button: true,
+            enabled: true,
+            onTapHint: 'Get Image from Your Phone',
+          ),
       );
     } else {
       return ListView(
@@ -93,24 +104,34 @@ class _CameraScreenState extends State<CameraScreen> {
           ),
           Container(
             height: 100,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Enter Amount of Waste'
+            child: Semantics(
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Enter Amount of Waste'
+                ),
+                keyboardType: TextInputType.number,
+                onSaved: (value) {
+                  newModel.quantity = value;
+                },
               ),
-              keyboardType: TextInputType.number,
-              validator: (value) => validateQuantity(value),
-              onSaved: (value) {
-                postEntryFields.quantity = value;
-              },
+              label: 'Enter Amount of Waste',
+              button: true,
+              enabled: true,
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: FloatingActionButton(
-              child: Icon(Icons.cloud_upload),
-              onPressed: () {
-                uploadImage(context);
-              },
+            child: Semantics(
+              child: FloatingActionButton(
+                child: Icon(Icons.cloud_upload),
+                onPressed: () {
+                  uploadImage(context);
+                },
+              ),
+              label: 'Upload Button',
+              button: true,
+              enabled: true,
+              onTapHint: 'Upload entry to the cloud',
             )
           ),
         ]
@@ -120,13 +141,6 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void pushEntries(BuildContext context) {
     Navigator.of(context).pop();
-  }
-
-  String validateQuantity(String value) {
-    if (value.isEmpty) {
-      return 'Please enter a quantity';
-    } else
-      return null;
   }
 
   Future uploadImage(BuildContext context) async {
@@ -141,8 +155,8 @@ class _CameraScreenState extends State<CameraScreen> {
         
         'submission_date': DateTime.now(),
         'url': url,
-        //'weight': int.parse(postEntryFields.quantity),
-        'weight': int.parse('42'),
+        //'weight': int.parse(newModel.quantity),
+        'weight': int.parse('1'),
         'longitude':locationData.longitude,
         'latitude':locationData.latitude,
       });

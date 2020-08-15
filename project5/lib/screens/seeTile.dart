@@ -4,12 +4,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
-import '../models/post.dart';
+import '../models/cloudPost.dart';
 
 class SeeTile extends StatelessWidget {
-  final Post post;
+  final CloudPost cloudPos;
 
-  SeeTile({Key key, @required this.post}) : super(key: key);
+  SeeTile({Key key, @required this.cloudPos}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +23,22 @@ class SeeTile extends StatelessWidget {
             children: [
               Container(
                 alignment: Alignment.center,
-                child: Text(formatDate(post.date), style: TextStyle(fontSize: 25),),
+                child: Text(formatDate(cloudPos.date), style: TextStyle(fontSize: 25),),
               ),
               Container(
                 padding: EdgeInsets.fromLTRB(0, 50, 0, 50),
                 alignment: Alignment.center,
-                child: Image.network(post.url),
+                child: Image.network(cloudPos.url),
               ),
               Container(
                 alignment: Alignment.center,
-                child: Text(post.weight.toString() + ' Items', style: TextStyle(fontSize: 30)),
+                child: Text(cloudPos.weight.toString() + ' Items', style: TextStyle(fontSize: 30)),
               ),
               Container(
                 padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  'Location: ' + post.latitude.toString() + ', ' + post.longitude.toString(), 
+                  'Location: ' + cloudPos.latitude.toString() + ', ' + cloudPos.longitude.toString(), 
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
                 ),
               )
