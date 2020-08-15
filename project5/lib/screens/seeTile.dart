@@ -38,7 +38,7 @@ class SeeTile extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  'Location: ' + post.location.toString(), 
+                  'Location: ' + post.latitude.toString() + ', ' + post.longitude.toString(), 
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
                 ),
               )

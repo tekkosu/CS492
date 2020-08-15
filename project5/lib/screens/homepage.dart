@@ -15,47 +15,63 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
+  int totalWeight = 0;
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: Firestore.instance.collection('posts').orderBy('submission_date', descending: true).snapshots(),
-      builder: (content, snapshot) {
-        if (snapshot.hasData) {
-          return Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: snapshot.data.documents.length,
-                  itemBuilder: (context,index) {
-                    Post post = Post(snapshot.data.documents[index]);
-                    //var post = snapshot.data.documents[index];
-                    return ListTile(
-                      onTap: () {
-                        pushSeeTile(context,post);
-                      },
-                      // title: Text(formatDate(post['submission_date'].toDate())),
-                      // trailing: Text(post['weight'].toString()),
-                      title: Text(formatDate(post.date)),
-                      trailing: Text(post.weight.toString()),
-                    );
-                  }
-                ),
-              ),
-              Padding (
-                padding: EdgeInsets.all(10),
-                child: FloatingActionButton(
-                  onPressed: () => pushAddNew(context),
-                  child: Icon(Icons.camera_enhance),
-                ),
-              )
-              
-            ],
-          );
-      } else {
-          return Center(child: CircularProgressIndicator());
-        }
-      }
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Wasteagram - $totalWeight'),
+      ),
+      body: Center(
+        child: StreamBuilder(
+          stream: Firestore.instance.collection('posts').orderBy('submission_date', descending: true).snapshots(),
+          builder: (content, snapshot) {
+            if (snapshot.hasData && !snapshot.data.documents.isEmpty) {
+              totalWeight = 0;
+              return Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: snapshot.data.documents.length,
+                      itemBuilder: (context,index) {
+                        Post post = Post(snapshot.data.documents[index]);
+                        totalWeight += post.weight; 
+                        //var post = snapshot.data.documents[index];
+                        return ListTile(
+                          onTap: () {
+                            pushSeeTile(context,post);
+                          },
+                          // title: Text(formatDate(post['submission_date'].toDate())),
+                          // trailing: Text(post['weight'].toString()),
+                          title: Text(formatDate(post.date), style: TextStyle(fontSize: 20)),
+                          trailing: Text(post.weight.toString(), style: TextStyle(fontSize: 25)),
+                          
+                        );
+                      }
+                    ),
+                  ),
+                ],
+              );
+          } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(), 
+                  ]
+                )
+              );
+            }
+          }
+        )
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => pushAddNew(context),
+        child: Icon(Icons.camera_enhance),
+      ),
     );
   }
 

@@ -10,13 +10,14 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('Wasteagram - ###'),
-        ),
-        body: MyHomePage(),
-        ),
+      home: MyHomePage(),
+      // home: Scaffold(
+      //   appBar: AppBar(
+      //     centerTitle: true,
+      //     title: Text('Wasteagram - ###'),
+      //   ),
+      //   body: MyHomePage(),
+      //   ),
       );
   }
 }

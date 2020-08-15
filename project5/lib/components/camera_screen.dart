@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:location/location.dart';
+import 'package:flutter/services.dart';
 import 'dart:convert';
 import '../models/newPost_model.dart';
 
@@ -29,6 +31,45 @@ class _CameraScreenState extends State<CameraScreen> {
     image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() { });
     //don't forget to add logic for handling errors or other stuff
+  }
+
+  LocationData locationData;
+  var locationService = Location();
+
+  @override
+  void initState() {
+    super.initState();
+    retrieveLocation();
+  }
+
+  void retrieveLocation() async {
+    try {
+      var _serviceEnabled = await locationService.serviceEnabled();
+      if (!_serviceEnabled) {
+        _serviceEnabled = await locationService.requestService();
+        if (!_serviceEnabled) {
+          print('Failed to enable service. Returning.');
+          return;
+        }
+      }
+
+      var _permissionGranted = await locationService.hasPermission();
+      if (_permissionGranted == PermissionStatus.denied) {
+        _permissionGranted = await locationService.requestPermission();
+        if (_permissionGranted != PermissionStatus.granted) {
+          print('Location service permission not granted. Returning.');
+        }
+      }
+
+      locationData = await locationService.getLocation();
+    } on PlatformException catch (e) {
+      print('Error: ${e.toString()}, code: ${e.code}');
+      locationData = null;
+    }
+    locationData = await locationService.getLocation();
+    setState(() {
+      
+    });
   }
 
   @override
@@ -100,9 +141,10 @@ class _CameraScreenState extends State<CameraScreen> {
         
         'submission_date': DateTime.now(),
         'url': url,
-        'weight': int.parse(postEntryFields.quantity),
-        //'location'.'longitude':'-121.8336',
-        //'location'.'latitude':'36.4135',
+        //'weight': int.parse(postEntryFields.quantity),
+        'weight': int.parse('42'),
+        'longitude':locationData.longitude,
+        'latitude':locationData.latitude,
       });
     pushEntries(context);
   }
