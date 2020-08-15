@@ -13,16 +13,9 @@ class CameraScreen extends StatefulWidget {
   _CameraScreenState createState() => _CameraScreenState();
 }
 
-// class PostEntryFields {
-//   String photoURL;
-//   String quantity;
-// }
-
 class _CameraScreenState extends State<CameraScreen> {
 
   NewModel newModel;
-  
-  var weight;
   File image;
 
   Future getImage() async{
@@ -71,9 +64,7 @@ class _CameraScreenState extends State<CameraScreen> {
       locationData = null;
     }
     locationData = await locationService.getLocation();
-    setState(() {
-      
-    });
+    setState(() { });
   }
 
   @override

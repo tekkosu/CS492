@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
-import 'package:project5/models/cloudPost.dart';
+import 'package:project5/models/cloudPost_model.dart';
 import 'addNew.dart';
 import 'seeTile.dart';
 
@@ -44,12 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             onTap: () {
                               pushSeeTile(context,cloudPos);
                             },
-                            // title: Text(formatDate(post['submission_date'].toDate())),
-                            // trailing: Text(post['weight'].toString()),
-                            title: Text(formatDate(cloudPos.date), style: TextStyle(fontSize: 20)),
+                            title: Text(changeDateToString(cloudPos.date), style: TextStyle(fontSize: 20)),
                             trailing: Text(cloudPos.weight.toString(), style: TextStyle(fontSize: 25)),
                           ),
-                          label: 'Details for $formatDate(post.date)',
+                          label: 'Details for $changeDateToString(post.date)',
                           button: true,
                           enabled: true,
                           onTapHint: 'View Post Details',
@@ -87,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  static String formatDate(date) {
+  static String changeDateToString(date) {
     var dateParsed = DateTime.parse(date.toDate().toString());
     final DateFormat dateFormat = DateFormat("EEEE, MMMM d, y");
 

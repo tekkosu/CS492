@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/camera_screen.dart';
+import 'camera_screen.dart';
 
 class AddNew extends StatelessWidget {
 

@@ -11,13 +11,6 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     centerTitle: true,
-      //     title: Text('Wasteagram - ###'),
-      //   ),
-      //   body: MyHomePage(),
-      //   ),
-      );
+    );
   }
 }
